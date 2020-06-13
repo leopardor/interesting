@@ -3,7 +3,7 @@ package com.shu.leetcode.tree.impl;
 import com.shu.leetcode.tree.SolveBinaryTreeProblems;
 import com.shu.pojo.TreeNode;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author arlen
@@ -82,5 +82,77 @@ public class SolveBinaryTreeProblemsImpl implements SolveBinaryTreeProblems {
         }
 
         return left == null ? right : left;
+    }
+
+
+    private List<Integer> printTree(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        List<Integer> resultList = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.peek();
+            resultList.add(node.val);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+
+            queue.poll();
+        }
+
+        return resultList;
+    }
+
+    @Override
+    public void mirror(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        if (root.left != null) {
+            mirror(root.left);
+        }
+
+        if (root.right != null) {
+            mirror(root.right);
+        }
+    }
+
+    @Override
+    public boolean isBalance(TreeNode root) {
+        return doIsBalance(root) != -1;
+    }
+
+    private int doIsBalance(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftDept = doIsBalance(root.left);
+        if (leftDept == -1) {
+            return -1;
+        }
+
+        int rightDept = doIsBalance(root.right);
+        if (rightDept == -1) {
+            return -1;
+        }
+
+        if (Math.abs(leftDept - rightDept) > 1) {
+            return -1;
+        }
+
+        return Math.max(leftDept, rightDept) + 1;
     }
 }

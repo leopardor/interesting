@@ -38,4 +38,20 @@ public interface SolveBinaryTreeProblems {
      * @return 最近公共父节点
      */
     TreeNode lastParentNode(TreeNode root, TreeNode p, TreeNode q);
+
+    /**
+     * 给定一颗二叉树，转换为镜像二叉树
+     * @param root 根节点
+     * @return
+     */
+    void mirror(TreeNode root);
+
+
+    /**
+     * 判断一棵二叉树是否是平衡二叉树
+     * @param root 根节点
+     * @return true or false
+     */
+    boolean isBalance(TreeNode root);
+
 }

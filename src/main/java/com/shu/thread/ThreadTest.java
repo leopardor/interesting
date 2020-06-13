@@ -3,6 +3,8 @@ package com.shu.thread;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -165,13 +167,16 @@ public class ThreadTest {
         return () -> {
             while (num > 0) {
                 synchronized (ThreadTest.class) {
-                    System.out.println(Thread.currentThread() + "-" + (num--));
-                    ThreadTest.class.notify();
+                    // 保证并发的正确性
                     if (num > 0) {
-                        try {
-                            ThreadTest.class.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        System.out.println(Thread.currentThread() + "-" + (num--));
+                        ThreadTest.class.notify();
+                        if (num > 0) {
+                            try {
+                                ThreadTest.class.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -205,5 +210,7 @@ public class ThreadTest {
 //        consumeThread.start();
 
         printNumber(10);
+
+//        ThreadPoolExecutor
     }
 }

@@ -91,4 +91,27 @@ public class NoneRecursiveTraversalTree implements TraverseTree {
         }
         listThreadLocal.set(resultList);
     }
+
+    public List<Integer> printTree(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.add(root);
+        TreeNode cur = root;
+        List<Integer> resultList = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            while (cur != null) {
+                stack.add(cur);
+                cur = cur.left;
+            }
+
+            cur = stack.pop();
+            resultList.add(cur.val);
+            cur = cur.right;
+        }
+
+        return resultList;
+    }
 }
