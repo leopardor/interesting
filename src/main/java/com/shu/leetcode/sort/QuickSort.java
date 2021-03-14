@@ -1,11 +1,8 @@
 package com.shu.leetcode.sort;
 
 
-import lombok.Data;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 
 /**
  * 快速排序

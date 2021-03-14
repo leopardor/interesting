@@ -134,6 +134,22 @@ public class SolveBinaryTreeProblemsImpl implements SolveBinaryTreeProblems {
         return doIsBalance(root) != -1;
     }
 
+    @Override
+    public TreeNode createBinaryTreeByArray(int[] arrays) {
+        return doCreateBinaryTreeByArray(arrays, 0);
+    }
+
+    private TreeNode doCreateBinaryTreeByArray(int[] arrays, int index) {
+        TreeNode root = null;
+        if (index < arrays.length) {
+            root = new TreeNode(arrays[index]);
+            root.left = doCreateBinaryTreeByArray(arrays, 2 * index + 1);
+            root.right = doCreateBinaryTreeByArray(arrays, 2 * index + 2);
+            return root;
+        }
+        return root;
+    }
+
     private int doIsBalance(TreeNode root) {
         if (root == null) {
             return 0;

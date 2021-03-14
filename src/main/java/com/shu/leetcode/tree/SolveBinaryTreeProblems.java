@@ -12,7 +12,7 @@ public interface SolveBinaryTreeProblems {
     /**
      * 二叉树的最大深度
      * @param root 根节点
-     * @return
+     * @return 深度
      */
     int deptOfTree(TreeNode root);
 
@@ -25,7 +25,6 @@ public interface SolveBinaryTreeProblems {
     /**
      * 二叉树转链表非递归实现
      * @param root 根节点
-     * @return
      */
     void flattenNoneRecursive(TreeNode root);
 
@@ -53,5 +52,13 @@ public interface SolveBinaryTreeProblems {
      * @return true or false
      */
     boolean isBalance(TreeNode root);
+
+
+    /**
+     * 给定数组返回该数组构建的二叉树
+     * @param arrays 数组
+     * @return 树的根节点
+     */
+    TreeNode createBinaryTreeByArray(int[] arrays);
 
 }
