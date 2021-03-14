@@ -11,8 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ThreadTest {
 
-
-
     // 消费队列
     private static List<Object> list = new ArrayList<>();
 
@@ -212,5 +210,7 @@ public class ThreadTest {
         printNumber(10);
 
 //        ThreadPoolExecutor
+
+
     }
 }
